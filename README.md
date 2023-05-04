@@ -1,0 +1,2 @@
+# Polyominos
+Polyominos un jeu
