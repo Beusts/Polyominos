@@ -1,0 +1,17 @@
+//
+public class Jeu {
+
+
+public void Choix(){
+}
+
+public void Jouer(){
+}
+
+public void Gagner(){
+}
+
+public boolean boolean(){
+}
+
+}
