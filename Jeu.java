@@ -2,6 +2,14 @@
  * La classe Jeu permet de jouer au jeu
  */
 public class Jeu {
+    Plateau plateau;
+
+    /**
+     * Crée un jeu
+     */
+    public Jeu(){
+        plateau = new Plateau();
+    }
 
 //on doit pouvoir choisir son mode de jeu
 public void Choix(){
