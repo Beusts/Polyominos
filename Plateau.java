@@ -1,92 +1,74 @@
+/**
+ * Classe Plateau
+ */
 public class Plateau{
+
+	/**
+	 * Nombre de lignes
+	 */
 	int nbLigne;
+
+	/**
+	 * Nombre de colonnes
+	 */
 	int nbColonne;
-	//Cellule [][]tab;
-	
+
+	/**
+	 * Tableau de cellules
+	 */
+	Cellule [][] plateau;
+
+	/**
+	 * Crée un plateau de nbLigne lignes et nbColonne colonnes
+	 */
 	public Plateau(int nbLigne, int nbColonne){
-		if (nbLigne < 1 || nbLigne > 99 || nbColonne < 1 || nbColonne > 26 ){
-			Ecran.afficherln("valeur non valide les valeur sont mis par defaut");
-			this.nbLigne = 10;
-			this.nbColonne = 12;
-		}else{
-			this.nbLigne = nbLigne;
-			this.nbColonne = nbColonne;
-			
+		if (nbLigne < 0 || nbLigne > 99 || nbColonne < 0 || nbColonne > 26){
+			Ecran.afficherln("Erreur : nombre de lignes ou de colonnes incorrect taille par default");
+			nbLigne = 10;
+			nbColonne = 12;
 		}
-		Cellule[][] tab = new Cellule[this.nbLigne][this.nbColonne];
-		//Cellule c = new Cellule();
-		
-		/*
-		for (int i = 0; i < this.nbLigne; i++){
-			for (int j = 0; j < this.nbColonne; j++){
-				tab[i][j] = c;
-		}
-		}
-		*/
-		
-		for (int i = 0; i < 10; i++){
-			for (int j = 0; j < 12; j++){
-				tab[i][j] = new Cellule();
+		this.nbLigne = nbLigne;
+		this.nbColonne = nbColonne;
+		plateau = new Cellule[nbLigne][nbColonne];
+		for (int i = 0; i < nbLigne; i++){
+			for (int j = 0; j < nbColonne; j++){
+				plateau[i][j] = new Cellule();
 			}
 		}
 	}
-	
+
+	/**
+	 * Crée un plateau de 10 lignes et 12 colonnes par default
+	 */
 	public Plateau(){
-		this(10,12);
+		this(10, 12);
 	}
-	/*
-	public void afficherVide(){
-		Ecran.afficher("  +");
-		for (int i =0; i < nbColonne; i++){
-			Ecran.afficher("- ");
-		}
-		Ecran.afficher("+\n");
-		for (int i = 1; i <= this.nbLigne; i++){
-			if (i >= 10)
-				Ecran.afficher(i, "|");
-			else
-				Ecran.afficher("0", i, "|");
-			for (int j = 0; j < this.nbColonne; j++){
-				Ecran.afficher(". ");
-				}
-			Ecran.afficher("|\n");
-		}
-		Ecran.afficher("  +");
-		for (int i =0; i < nbColonne; i++){
-			Ecran.afficher("- ");
-		}
-		Ecran.afficher("+\n   ");
-		for (int i =0; i < nbColonne; i++){
-			Ecran.afficher((char)(i+65), " ");
-		}
-		Ecran.afficher("\n");
-	}
-	
+	/**
+	 * Affiche le plateau de jeu
+	 */
 	public void afficher(){
-		Ecran.afficher("  +");
-		for (int i =0; i < nbColonne; i++){
-			Ecran.afficher("- ");
+
+		String s = "  +";
+		for (int j = 0 ; j < nbColonne; j++){
+			s = s + "- ";
 		}
-		Ecran.afficher("+\n");
-		for (int i = 0; i < this.nbLigne; i++){
-			if (i + 1 >= 10)
-				Ecran.afficher(i + 1, "|");
+		s = s + "+" + "\n";
+		Ecran.afficher(s);
+		for (int i = 0; i < nbLigne; i++){
+			if (i < 9)
+				Ecran.afficher('0', i + 1,'|');
 			else
-				Ecran.afficher("0", i + 1, "|");
-			for (int j = 0; j < this.nbColonne; j++){
-				Ecran.afficher(this.tab[i][j].estLibre());
-				}
-			Ecran.afficher("|\n");
+				Ecran.afficher(i + 1, '|');
+			for (int j = 0; j < nbColonne; j++){
+				Ecran.afficher(plateau[i][j].estLibre());
+			}
+			Ecran.afficherln('|');
 		}
-		Ecran.afficher("  +");
-		for (int i =0; i < nbColonne; i++){
-			Ecran.afficher("- ");
+		Ecran.afficher(s);
+		Ecran.afficher("   ");
+		for (int j = 0 ; j < nbColonne; j++){
+			Ecran.afficher((char)(j+65), ' ');
 		}
-		Ecran.afficher("+\n   ");
-		for (int i =0; i < nbColonne; i++){
-			Ecran.afficher((char)(i+65), " ");
-		}
-		Ecran.afficher("\n");
 	}
-	*/
+
 }

@@ -13,9 +13,9 @@ public class Cellule{
 	
 	public String estLibre(){
 		if (occupe)
-			return ". ";
-		else
 			return motif;
+		else
+			return ". ";
 	}
 	
 }

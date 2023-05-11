@@ -12,6 +12,7 @@ public void Jouer(){
 //permettre au meilleur de gagner
 //si l'adversaire ne peut plus placer de piece
 public boolean Gagner(){
+    return true;
 }
 
 }
