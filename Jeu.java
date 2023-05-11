@@ -1,4 +1,6 @@
-//Ce programme permet de jouer au jeu
+/**
+ * La classe Jeu permet de jouer au jeu
+ */
 public class Jeu {
 
 //on doit pouvoir choisir son mode de jeu
