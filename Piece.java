@@ -38,4 +38,77 @@ public class Piece {
         this.forme = forme;
     }
 
+    public void dominos() {
+		matrice[0][0] = 1;
+		matrice[][] = 1;
+		}
+	
+	
+	
+	public void triominos_L() {
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;
+		}
+	
+	public void triominos_I() {
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;
+		}
+	
+	
+	
+	
+	public void tétrominos_O() {
+        matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;
+        matrice[][] = 1;
+		}
+	
+	public void tétrominos_I() {
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;
+        matrice[][] = 1;
+			}
+		
+	public void tétrominos_T() {
+	    matrice[][] = 1;
+        matrice[][] = 1;
+        matrice[][] = 1;
+		matrice[][] = 1;
+		}
+			
+	public void tétrominos_J() {
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;		
+		}
+			
+	public void tétrominos_S() {
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;
+	    }
+		
+	public void tétrominos_Z() {
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;
+		}
+		
+	public void tétrominos_I() {
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;
+		matrice[][] = 1;		
+		}
+
+    
+    
 }
