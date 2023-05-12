@@ -10,6 +10,11 @@ public class Piece {
     boolean[][] forme;
 
     /**
+     * Taille de la pièce
+     */
+    int taille;
+
+    /**
      * Crée une pièce avec le nom et la forme donnée
      *
      * @param nom   Nom de la pièce
@@ -27,89 +32,61 @@ public class Piece {
         this("Piece", new boolean[1][1]);
     }
 
-    /**
-     * Cree une tetraminos carré
-     */
-    void carre() {
-        forme = new boolean[2][2];
-        forme[0][0] = true;
-        forme[0][1] = true;
-        forme[1][0] = true;
-        forme[1][1] = true;
-        this.forme = forme;
-    }
 
     public void dominos() {
-		matrice[0][0] = 1;
-		matrice[][] = 1;
-		}
-	
-	
-	
-	public void triominos_L() {
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;
-		}
-	
-	public void triominos_I() {
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;
-		}
-	
-	
-	
-	
-	public void tétrominos_O() {
-        matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;
-        matrice[][] = 1;
-		}
-	
-	public void tétrominos_I() {
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;
-        matrice[][] = 1;
-			}
-		
-	public void tétrominos_T() {
-	    matrice[][] = 1;
-        matrice[][] = 1;
-        matrice[][] = 1;
-		matrice[][] = 1;
-		}
-			
-	public void tétrominos_J() {
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;		
-		}
-			
-	public void tétrominos_S() {
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;
-	    }
-		
-	public void tétrominos_Z() {
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;
-		}
-		
-	public void tétrominos_I() {
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;
-		matrice[][] = 1;		
-		}
+        forme = new boolean[][]{{true, false}, {true, false}};
+        taille = 2;
+    }
 
-    
-    
+
+    public void triominos_L() {
+        forme = new boolean[][]{{true, true},{false, true}};
+        taille = 3;
+    }
+
+
+    public void triominos_I() {
+        forme = new boolean[][]{{true, false},{true, false},{true, false}};
+        taille = 3;
+
+    }
+
+
+    public void tétrominos_O() {
+        forme = new boolean[][]{{true, true},{true, true}};
+        taille = 4;
+    }
+
+    public void tétrominos_I() {
+        forme = new boolean[][]{{true, false},{true, false},{true, false},{true, false}};
+        taille = 4;
+
+    }
+
+    public void tétrominos_T() {
+        forme = new boolean[][]{{false, true, false},{true, true, true}};
+        taille = 4;
+    }
+
+    public void tétrominos_J() {
+        forme = new boolean[][]{{false, true},{false, true},{true, true}};
+        taille = 4;
+    }
+
+    public void tétrominos_L() {
+        forme = new boolean[][]{{true, false},{true, false},{true, true}};
+        taille = 4;
+    }
+
+    public void tétrominos_S() {
+        forme = new boolean[][]{{false, true, true},{true, true, false}};
+        taille = 4;
+    }
+
+    public void tétrominos_Z() {
+        forme = new boolean[][]{{true, true, false},{false, true, true}};
+        taille = 4;
+    }
+
+
 }
