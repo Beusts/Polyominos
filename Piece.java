@@ -27,6 +27,9 @@ public class Piece {
     
     public void rotation() {     
     }
+    
+    public void affichage() {     
+    }
 
     /**
      * Crée une pièce par default
