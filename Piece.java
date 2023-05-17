@@ -39,7 +39,10 @@ public class Piece {
         }
         forme = formeRotation;
     }
-
+    
+   /**
+     * Afficher les polyominos
+     **/    
     public void afficher(String motif) {
         int nbLigne = forme.length;
         int nbColonne = forme[0].length;
