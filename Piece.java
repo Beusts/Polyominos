@@ -56,7 +56,7 @@ public class Piece {
 
     /**
      * Crée une pièce par default
-     */
+     **/
     public Piece() {
         this("Piece", new boolean[1][1]);
     }
