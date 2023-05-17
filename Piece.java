@@ -32,59 +32,55 @@ public class Piece {
         this("Piece", new boolean[1][1]);
     }
 
-
     public void dominos() {
         forme = new boolean[][]{{true, false}, {true, false}};
         taille = 2;
     }
 
-
     public void triominos_L() {
-        forme = new boolean[][]{{true, true},{false, true}};
+        forme = new boolean[][]{{true, true}, {false, true}};
         taille = 3;
     }
-
 
     public void triominos_I() {
-        forme = new boolean[][]{{true, false},{true, false},{true, false}};
+        forme = new boolean[][]{{true, false}, {true, false}, {true, false}};
         taille = 3;
 
     }
 
-
     public void tétrominos_O() {
-        forme = new boolean[][]{{true, true},{true, true}};
+        forme = new boolean[][]{{true, true}, {true, true}};
         taille = 4;
     }
 
     public void tétrominos_I() {
-        forme = new boolean[][]{{true, false},{true, false},{true, false},{true, false}};
+        forme = new boolean[][]{{true, false}, {true, false}, {true, false}, {true, false}};
         taille = 4;
 
     }
 
     public void tétrominos_T() {
-        forme = new boolean[][]{{false, true, false},{true, true, true}};
+        forme = new boolean[][]{{false, true, false}, {true, true, true}};
         taille = 4;
     }
 
     public void tétrominos_J() {
-        forme = new boolean[][]{{false, true},{false, true},{true, true}};
+        forme = new boolean[][]{{false, true}, {false, true}, {true, true}};
         taille = 4;
     }
 
     public void tétrominos_L() {
-        forme = new boolean[][]{{true, false},{true, false},{true, true}};
+        forme = new boolean[][]{{true, false}, {true, false}, {true, true}};
         taille = 4;
     }
 
     public void tétrominos_S() {
-        forme = new boolean[][]{{false, true, true},{true, true, false}};
+        forme = new boolean[][]{{false, true, true}, {true, true, false}};
         taille = 4;
     }
 
     public void tétrominos_Z() {
-        forme = new boolean[][]{{true, true, false},{false, true, true}};
+        forme = new boolean[][]{{true, true, false}, {false, true, true}};
         taille = 4;
     }
 

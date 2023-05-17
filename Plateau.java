@@ -61,7 +61,7 @@ public class Plateau {
             else
                 Ecran.afficher(i + 1, '|');
             for (int j = 0; j < nbColonne; j++) {
-                Ecran.afficher(plateau[i][j].estLibre());
+                Ecran.afficher(plateau[i][j].toString());
             }
             Ecran.afficherln('|');
         }

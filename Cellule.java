@@ -34,7 +34,7 @@ public class Cellule {
      *
      * @return motif de la cellule
      */
-    public String estLibre() {
+    public String toString() {
         if (occupe)
             return motif;
         else
