@@ -58,7 +58,17 @@ public class Joueur {
         piece[8].tetrominos_S();
         piece[9] = new Piece("tetrominos_Z", new boolean[4][2]);
         piece[9].tetrominos_Z();
+    }
 
+    /**
+     * Affiche l'inventaire du joueur
+     */
+    public void afficherPieces(){
+        int taille = piece.length;
+        for (int i = 0; i < taille; i++) {
+            Ecran.afficherln(i + " : ");
+            piece[i].afficher(motif);
+        }
 
     }
 }

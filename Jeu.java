@@ -10,7 +10,6 @@ public class Jeu {
         Ecran.afficher("Il s'agit d'un jeu de blocage : le perdant est le premier joueur qui ne peut plus placer de pièce. Choix de jouer face à un autre joueur ou un ordinateuré");
     }
 
-
     /**
      * Crée un jeu
      */
@@ -26,10 +25,22 @@ public class Jeu {
     public void Jouer() {
     }
 
-    //permettre au meilleur de gagner
-//si l'adversaire ne peut plus placer de piece
-    public boolean Gagner() {
+    /**
+     * Vérifie si le joueur a perdu
+     * @return true si le joueur a perdu, false sinon
+     **/
+    public boolean Perdu() {
         return true;
+    }
+
+    /**
+     * Permet à un joueur de poser une pièce sur le plateau
+     * @param joueur Joueur qui pose la pièce
+     * @param plateau Plateau sur lequel la pièce est posée
+     */
+    public void poser(Joueur joueur, Plateau plateau){
+        Ecran.afficher("Choisissez une pièce à poser : ");
+        joueur.afficherPieces();
     }
 
 }
