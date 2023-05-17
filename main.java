@@ -4,7 +4,8 @@ public class main {
 		piece.tetrominos_L();
 		piece.afficher("X ");
 		piece.rotation();
-		Ecran.afficherln("");
+		Ecran.afficherln();
 		piece.afficher("X ");
+
 	}
 }

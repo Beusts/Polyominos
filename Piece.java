@@ -1,17 +1,20 @@
+/**
+ * Classe Piece
+ **/
 public class Piece {
     /**
      * Nom de la pièce
-     */
+     **/
     String nom;
 
     /**
      * Motif de la pièce
-     */
+     **/
     boolean[][] forme;
 
     /**
      * Taille de la pièce
-     */
+     **/
     int taille;
 
     /**
@@ -19,7 +22,7 @@ public class Piece {
      *
      * @param nom   Nom de la pièce
      * @param forme Forme de la pièce
-     */
+     **/
     public Piece(String nom, boolean[][] forme) {
         this.nom = nom;
         this.forme = forme;
