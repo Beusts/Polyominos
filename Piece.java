@@ -64,13 +64,13 @@ public class Piece {
         taille = 4;
     }
 
-    public void tetrominos_J() {
-        forme = new boolean[][]{{false, true}, {false, true}, {true, true}};
+    public void tetrominos_L() {
+        forme = new boolean[][]{{true, false}, {true, false}, {true, true}};
         taille = 4;
     }
 
-    public void tetrominos_L() {
-        forme = new boolean[][]{{true, false}, {true, false}, {true, true}};
+    public void tetrominos_J() {
+        forme = new boolean[][]{{false, true}, {false, true}, {true, true}};
         taille = 4;
     }
 

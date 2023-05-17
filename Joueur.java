@@ -44,20 +44,21 @@ public class Joueur {
         piece[1].triominos_L();
         piece[2] = new Piece("triominos_I", new boolean[3][2]);
         piece[2].triominos_I();
-        piece[3] = new Piece("tétrominos_O", new boolean[4][2]);
+        piece[3] = new Piece("tetrominos_O", new boolean[4][2]);
         piece[3].tetrominos_O();
-        piece[4] = new Piece("tétrominos_I", new boolean[4][2]);
+        piece[4] = new Piece("tetrominos_I", new boolean[4][2]);
         piece[4].tetrominos_I();
-        piece[5] = new Piece("tétrominos_T", new boolean[4][2]);
+        piece[5] = new Piece("tetrominos_T", new boolean[4][2]);
         piece[5].tetrominos_T();
-        piece[6] = new Piece("tétrominos_L", new boolean[4][2]);
+        piece[6] = new Piece("tetrominos_L", new boolean[4][2]);
         piece[6].tetrominos_L();
-        piece[7] = new Piece("tétrominos_S", new boolean[4][2]);
-        piece[7].tetrominos_S();
-        piece[8] = new Piece("tétrominos_Z", new boolean[4][2]);
-        piece[8].tetrominos_Z();
-        piece[9] = new Piece("tétrominos_J", new boolean[4][2]);
-        piece[9].tetrominos_J();
+        piece[7] = new Piece("tetrominos_J", new boolean[4][2]);
+        piece[7].tetrominos_J();
+        piece[8] = new Piece("tetrominos_S", new boolean[4][2]);
+        piece[8].tetrominos_S();
+        piece[9] = new Piece("tetrominos_Z", new boolean[4][2]);
+        piece[9].tetrominos_Z();
+
 
 
     }
