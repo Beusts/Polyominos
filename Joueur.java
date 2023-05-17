@@ -60,6 +60,5 @@ public class Joueur {
         piece[9].tetrominos_Z();
 
 
-
     }
 }

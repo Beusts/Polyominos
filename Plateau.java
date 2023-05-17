@@ -2,7 +2,6 @@
  * Classe Plateau
  */
 public class Plateau {
-
     /**
      * Nombre de lignes
      */
