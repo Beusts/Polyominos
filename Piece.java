@@ -24,6 +24,9 @@ public class Piece {
         this.nom = nom;
         this.forme = forme;
     }
+    
+    public void rotation() {     
+    }
 
     /**
      * Crée une pièce par default
