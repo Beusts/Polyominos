@@ -25,7 +25,11 @@ public class Piece {
         this.forme = forme;
     }
     
-    public void rotation() {     
+    public void rotation() {    
+        int[][] matrice_rotation = new int[this.taille][this.taille];
+        for (int i = 0; i < ; i++) {
+            for (int j = 0; j < this.taille; j++) {
+                matrice_rotation[i][j] = matrice[this.taille - j - 1][i];
     }
     
     public void afficher(String motif) {
