@@ -24,14 +24,22 @@ public class Piece {
         this.nom = nom;
         this.forme = forme;
     }
-    
-    public void rotation() {    
-        int[][] matrice_rotation = new int[this.taille][this.taille];
-        for (int i = 0; i < ; i++) {
-            for (int j = 0; j < this.taille; j++) {
-                matrice_rotation[i][j] = matrice[this.taille - j - 1][i];
+
+    /**
+     * Effectue une rotation de 90 degrés sens horaire de la pièce
+     **/
+    public void rotation() {
+        int nbLigne = forme.length;
+        int nbColonne = forme[0].length;
+        boolean[][] formeRotation = new boolean[nbColonne][nbLigne];
+        for (int i = 0; i < nbLigne; i++) {
+            for (int j = 0; j < nbColonne; j++) {
+                formeRotation[j][nbLigne - 1 - i] = forme[i][j];
+            }
+        }
+        forme = formeRotation;
     }
-    
+
     public void afficher(String motif) {
         int nbLigne = forme.length;
         int nbColonne = forme[0].length;
