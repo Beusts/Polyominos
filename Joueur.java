@@ -35,7 +35,7 @@ public class Joueur {
     }
 
     /**
-     * initialise l'inventaire du joueur
+     * Initialise l'inventaire du joueur
      */
     public void inventaire() {
         piece[0] = new Piece("dominos", new boolean[2][2]);

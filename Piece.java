@@ -28,7 +28,18 @@ public class Piece {
     public void rotation() {     
     }
     
-    public void affichage() {     
+    public void afficher(String motif) {
+        int nbLigne = forme.length;
+        int nbColonne = forme[0].length;
+        for (int i = 0; i < nbLigne; i++) {
+            for (int j = 0; j < nbColonne; j++) {
+                if (forme[i][j])
+                    Ecran.afficher(motif);
+                else
+                    Ecran.afficher(". ");
+            }
+            Ecran.afficherln();
+        }
     }
 
     /**
