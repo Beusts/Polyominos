@@ -48,38 +48,38 @@ public class Piece {
 
     }
 
-    public void tétrominos_O() {
+    public void tetrominos_O() {
         forme = new boolean[][]{{true, true}, {true, true}};
         taille = 4;
     }
 
-    public void tétrominos_I() {
+    public void tetrominos_I() {
         forme = new boolean[][]{{true, false}, {true, false}, {true, false}, {true, false}};
         taille = 4;
 
     }
 
-    public void tétrominos_T() {
+    public void tetrominos_T() {
         forme = new boolean[][]{{false, true, false}, {true, true, true}};
         taille = 4;
     }
 
-    public void tétrominos_J() {
+    public void tetrominos_J() {
         forme = new boolean[][]{{false, true}, {false, true}, {true, true}};
         taille = 4;
     }
 
-    public void tétrominos_L() {
+    public void tetrominos_L() {
         forme = new boolean[][]{{true, false}, {true, false}, {true, true}};
         taille = 4;
     }
 
-    public void tétrominos_S() {
+    public void tetrominos_S() {
         forme = new boolean[][]{{false, true, true}, {true, true, false}};
         taille = 4;
     }
 
-    public void tétrominos_Z() {
+    public void tetrominos_Z() {
         forme = new boolean[][]{{true, true, false}, {false, true, true}};
         taille = 4;
     }
