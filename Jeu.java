@@ -20,22 +20,102 @@ public class Jeu {
     }
 
     /**
+     * Crée un jeu avec le plateau, les joueurs entrés par l'utilisateur
+     **/
+    public void personnalisée() {
+        Ecran.afficherln("Entrez le nom du joueur 1");
+        String nomJoueur1 = Clavier.saisirString();
+        Ecran.afficherln("Entrez le nom du joueur 2");
+        String nomJoueur2 = Clavier.saisirString();
+        Ecran.afficherln("Entrez le motif du joueur 1");
+        String motifJoueur1 = Clavier.saisirString();
+        Ecran.afficherln("Entrez le motif du joueur 2");
+        String motifJoueur2 = Clavier.saisirString();
+        Ecran.afficherln("Entrez le nombre de pièces");
+        int nbPiece = Clavier.saisirInt();
+        this.joueur1 = new Joueur(nomJoueur1, motifJoueur1 + " ", nbPiece);
+        this.joueur2 = new Joueur(nomJoueur2, motifJoueur2 + " ", nbPiece);
+        Ecran.afficherln("Le plateau est créé en fonction des piece choisies aléatoirement");
+
+        int[] alea = new int[nbPiece];
+        for (int i = 0; i < nbPiece; i++) {
+            alea[i] = (int) (Math.random() * 10);
+        }
+        joueur1.inventaireAlea(alea);
+        joueur2.inventaireAlea(alea);
+        int nbCarre = joueur1.nbCarre();
+        int cote = (int) Math.sqrt(nbCarre * 2);
+        Ecran.afficherln("Le plateau est de " + cote + "x" + cote);
+        this.plateau = new Plateau(cote, cote);
+    }
+
+    /**
      * Crée un jeu par default
      */
     public Jeu() {
-        this(new Plateau(5,5), new Joueur("joueur1", "O ", 10), new Joueur("joueur2", "X ", 10));
+        this(new Plateau(), new Joueur("joueur1", "O ", 10), new Joueur("joueur2", "X ", 10));
     }
 
     public void regle() {
         Ecran.afficherln("Chaque joueur dispose d'un ensemble de pièces, qui sont des polyominos(dominos, triominos, tétrominos), et qu'il place tour à tour sur un plateau (une grille rectangulaire).");
-        Ecran.afficherln("Il s'agit d'un jeu de blocage : le perdant est le premier joueur qui ne peut plus placer de pièce. Choix de jouer face à un autre joueur ou un ordinateuré");
+        Ecran.afficherln("Il s'agit d'un jeu de blocage : le perdant est le premier joueur qui ne peut plus placer de pièce. Choix de jouer face à un autre joueur ou un ordinateur");
         Ecran.afficherln("Les piece sont placer en fonction du coin supérieure gauche de la piece");
+        Ecran.afficherln();
     }
 
     /**
-     * Permet de choisir le mode de jeu
+     * Permet de choisir comment veut jouer
      */
-    public void choix() {
+    public void jouer() {
+        Ecran.afficherln("Bienvenu dans le Jeu de blocage avec polyominos");
+        Ecran.afficherln("1 : Jouer");
+        Ecran.afficherln("2 : Règle");
+        Ecran.afficherln("3 : Quitter");
+        int choix = Clavier.saisirInt();
+        switch (choix) {
+            case 1:
+                modeDeJeu();
+                break;
+            case 2:
+                regle();
+                jouer();
+                break;
+            case 3:
+                Ecran.afficherln("Au revoir");
+                break;
+            default:
+                Ecran.afficherln("Erreur : choix incorrect");
+                jouer();
+                break;
+        }
+    }
+
+    public void parametrage() {
+        Ecran.afficherln("1 : Plateau par default");
+        Ecran.afficherln("2 : Plateau personnalisée");
+        int choix = Clavier.saisirInt();
+        switch (choix) {
+            case 1:
+                this.joueur1 = new Joueur("joueur1", "O ", 20);
+                this.joueur1.inventaire();
+                this.joueur2 = new Joueur("joueur2", "X ", 20);
+                this.joueur2.inventaire();
+                this.plateau = new Plateau();
+                break;
+            case 2:
+                personnalisée();
+                break;
+            default:
+                Ecran.afficherln("Erreur : choix incorrect");
+                parametrage();
+                break;
+        }
+    }
+
+    /**
+     * Permet de choisir contre qui jouer
+     */
+    public void modeDeJeu() {
         Ecran.afficherln("Choix du mode de jeu : ");
         Ecran.afficherln("1 : Joueur contre Joueur");
         Ecran.afficherln("2 : Joueur contre IA");
@@ -53,7 +133,7 @@ public class Jeu {
                 break;
             default:
                 Ecran.afficherln("Erreur : choix incorrect");
-                choix();
+                modeDeJeu();
                 break;
         }
     }
@@ -62,23 +142,22 @@ public class Jeu {
      * Lance une partie de joueur contre joueur
      */
     public void jouerJCJ() {
-        joueur1.inventaire();
-        joueur2.inventaire();
+        plateau.afficher();
         while (true) {
             if (!perdu(joueur1)) {
-                Ecran.afficherln("Au tour du joueur 1");
+                Ecran.afficherln("Au tour de " + joueur1.nom);
                 poser(joueur1, plateau);
                 plateau.afficher();
-            }else {
-                Ecran.afficherln("Le joueur 1 a perdu");
+            } else {
+                Ecran.afficherln(joueur1.nom, " a perdu");
                 break;
             }
             if (!perdu(joueur2)) {
-                Ecran.afficherln("Au tour du joueur 2");
+                Ecran.afficherln("Au tour de ", joueur2.nom);
                 poser(joueur2, plateau);
                 plateau.afficher();
             } else {
-                Ecran.afficherln("Le joueur 2 a perdu");
+                Ecran.afficherln(joueur1.nom, " a perdu");
                 break;
             }
         }
@@ -88,24 +167,22 @@ public class Jeu {
      * Lance une partie de joueur contre IA
      **/
     public void jouerJCI() {
-        joueur1.inventaire();
-        joueur2.inventaire();
-
+        plateau.afficher();
         while (true) {
             if (!perdu(joueur1)) {
-                Ecran.afficherln("Au tour du joueur 1");
+                Ecran.afficherln("Au tour de " + joueur1.nom);
                 poser(joueur1, plateau);
                 plateau.afficher();
-            }else {
-                Ecran.afficherln("Le joueur 1 a perdu");
+            } else {
+                Ecran.afficherln(joueur1.nom, " a perdu");
                 break;
             }
             if (!perdu(joueur2)) {
-                Ecran.afficherln("Au tour du joueur 2");
+                Ecran.afficherln("Au tour de ", joueur2.nom);
                 poserIA(joueur2, plateau);
                 plateau.afficher();
             } else {
-                Ecran.afficherln("Le joueur 2 a perdu");
+                Ecran.afficherln(joueur1.nom, " a perdu");
                 break;
             }
         }
@@ -115,28 +192,22 @@ public class Jeu {
      * Lance une partie d'IA contre IA
      **/
     public void jouerICI() {
-        joueur1.inventaire();
-        joueur2.inventaire();
-        int i = 0;
         plateau.afficher();
         while (true) {
             if (!perdu(joueur1)) {
-                Ecran.afficherln("Au tour du joueur 1");
-                joueur1.motif = (char) (65 + i) + " ";
+                Ecran.afficherln("Au tour de " + joueur1.nom);
                 poserIA(joueur1, plateau);
                 plateau.afficher();
-                i++;
-            }else {
-                Ecran.afficherln("Le joueur 1 a perdu");
+            } else {
+                Ecran.afficherln(joueur1.nom, " a perdu");
                 break;
             }
             if (!perdu(joueur2)) {
-                Ecran.afficherln("Au tour du joueur 2");
-                joueur2.motif = (char) (96 + i) + " ";
+                Ecran.afficherln("Au tour de ", joueur2.nom);
                 poserIA(joueur2, plateau);
                 plateau.afficher();
             } else {
-                Ecran.afficherln("Le joueur 2 a perdu");
+                Ecran.afficherln(joueur2.nom, " a perdu");
                 break;
             }
         }
