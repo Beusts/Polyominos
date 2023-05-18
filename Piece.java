@@ -59,6 +59,22 @@ public class Piece {
             Ecran.afficherln();
         }
     }
+    /**
+     * Affiche toutes les rotations de la pièce
+     **/
+    public void afficherRotation(String motif){
+        Ecran.afficherln("1.");
+        afficher(motif);
+        Ecran.afficherln("\n2.");
+        rotation();
+        afficher(motif);
+        Ecran.afficherln("\n3.");
+        rotation();
+        afficher(motif);
+        Ecran.afficherln("\n4.");
+        rotation();
+        afficher(motif);
+    }
 
     /**
      * Crée une pièce par default
@@ -71,7 +87,7 @@ public class Piece {
      * Initialise la pièce à la forme d'un domino
      **/
     public void dominos() {
-        forme = new boolean[][]{{true, false}, {true, false}};
+        forme = new boolean[][]{{true}, {true}};
         taille = 2;
     }
 
@@ -87,7 +103,7 @@ public class Piece {
      * Initialise la pièce à la forme d'un triominos en I
      **/
     public void triominos_I() {
-        forme = new boolean[][]{{true, false}, {true, false}, {true, false}};
+        forme = new boolean[][]{{true}, {true}, {true}};
         taille = 3;
 
     }
@@ -104,7 +120,7 @@ public class Piece {
      * Initialise la pièce à la forme d'un tetrominos en I
      **/
     public void tetrominos_I() {
-        forme = new boolean[][]{{true, false}, {true, false}, {true, false}, {true, false}};
+        forme = new boolean[][]{{true}, {true}, {true}, {true}};
         taille = 4;
 
     }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * Classe Joueur
  */
@@ -66,9 +68,19 @@ public class Joueur {
     public void afficherPieces(){
         int taille = piece.length;
         for (int i = 0; i < taille; i++) {
-            Ecran.afficherln(i + " : ");
-            piece[i].afficher(motif);
+            Ecran.afficherln(i + 1 + " : ");
+            piece[i].afficher(this.motif);
+            Ecran.afficherln();
         }
+    }
 
+    public void enleverPiece(Piece piece){
+        int taille = this.piece.length;
+        for (int i = 0; i < taille; i++) {
+            if (Objects.equals(this.piece[i].nom, piece.nom)) {
+                this.piece[i] = null;
+                break;
+            }
+        }
     }
 }
