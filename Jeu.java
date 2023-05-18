@@ -117,7 +117,7 @@ public class Jeu {
     public void jouerICI() {
         joueur1.inventaire();
         joueur2.inventaire();
-        int i = 0, j = 0;
+        int i = 0;
         plateau.afficher();
         while (true) {
             if (!perdu(joueur1)) {
@@ -132,10 +132,9 @@ public class Jeu {
             }
             if (!perdu(joueur2)) {
                 Ecran.afficherln("Au tour du joueur 2");
-                joueur2.motif = (char) (96 + j) + " ";
+                joueur2.motif = (char) (96 + i) + " ";
                 poserIA(joueur2, plateau);
                 plateau.afficher();
-                j++;
             } else {
                 Ecran.afficherln("Le joueur 2 a perdu");
                 break;
@@ -205,24 +204,27 @@ public class Jeu {
      * @param plateau  Plateau sur lequel la pièce est posée
      */
     public void poserIA(Joueur joueurIA, Plateau plateau) {
-        int nbLigne = (int) (Math.random() * plateau.nbLigne) + 1;
-        int nbColonne = (int) (Math.random() * plateau.nbColonne) + 1;
+        boolean go = true;
+        int nbLigne, nbColonne, numPiece;
+        while (go) {
+            nbLigne = (int) (Math.random() * plateau.nbLigne) + 1;
+            nbColonne = (int) (Math.random() * plateau.nbColonne) + 1;
 
-        int numPiece = (int) (Math.random() * joueurIA.piece.length);
-        Piece piece = joueurIA.piece[numPiece];
-        while (piece == null) {
             numPiece = (int) (Math.random() * joueurIA.piece.length);
-            piece = joueurIA.piece[numPiece];
-        }
-        int rotation = (int) (Math.random() * 4);
-        for (int i = 0; i < rotation; i++) {
-            piece.rotation();
-        }
-        if (plateau.peutPoser(piece, nbLigne, nbColonne, false)) {
-            plateau.poser(joueurIA.motif, piece, nbLigne, nbColonne);
-            joueurIA.enleverPiece(piece);
-        } else {
-            poserIA(joueurIA, plateau);
+            Piece piece = joueurIA.piece[numPiece];
+            while (piece == null) {
+                numPiece = (int) (Math.random() * joueurIA.piece.length);
+                piece = joueurIA.piece[numPiece];
+            }
+            int rotation = (int) (Math.random() * 4);
+            for (int i = 0; i < rotation; i++) {
+                piece.rotation();
+            }
+            if (plateau.peutPoser(piece, nbLigne, nbColonne, false)) {
+                plateau.poser(joueurIA.motif, piece, nbLigne, nbColonne);
+                joueurIA.enleverPiece(piece);
+                go = false;
+            }
         }
 
     }
