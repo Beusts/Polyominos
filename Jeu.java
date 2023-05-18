@@ -22,7 +22,7 @@ public class Jeu {
     /**
      * Crée un jeu avec le plateau, les joueurs entrés par l'utilisateur
      **/
-    public void personnalisée() {
+    public void personnalisee() {
         Ecran.afficherln("Entrez le nom du joueur 1");
         String nomJoueur1 = Clavier.saisirString();
         Ecran.afficherln("Entrez le nom du joueur 2");
@@ -74,6 +74,7 @@ public class Jeu {
         int choix = Clavier.saisirInt();
         switch (choix) {
             case 1:
+                parametrage();
                 modeDeJeu();
                 break;
             case 2:
@@ -103,7 +104,7 @@ public class Jeu {
                 this.plateau = new Plateau();
                 break;
             case 2:
-                personnalisée();
+                personnalisee();
                 break;
             default:
                 Ecran.afficherln("Erreur : choix incorrect");
@@ -250,12 +251,13 @@ public class Jeu {
         joueur.afficherPieces();
         int choix = Clavier.saisirInt();
         Piece piece = joueur.piece[choix - 1];
-        Ecran.afficherln("Choisissez une position : ");
+        Ecran.afficherln("Choisissez une rotation : ");
         piece.afficherRotation(joueur.motif);
         int rotation = Clavier.saisirInt();
         for (int i = 0; i < rotation; i++) {
             piece.rotation();
         }
+        plateau.afficher();
         Ecran.afficherln("Choisissez une ligne : ");
         int ligne = Clavier.saisirInt();
         Ecran.afficherln("Choisissez une colonne : ");
