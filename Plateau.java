@@ -78,14 +78,14 @@ public class Plateau {
      * @param piece   une piece
      * @param ligne   nombre de lignes
      * @param colonne nombre de colonnes
-     * @param motif   motif de la pièce
+     * @param message true si les messages d'erreur doivent être affichés, false sinon
      * @return true si la pièce a été posée, false sinon
      */
-    public boolean poser(String motif, Piece piece, int ligne, int colonne, boolean jeu) {
+    public boolean peutPoser(Piece piece, int ligne, int colonne, boolean message) {
         int nbLigne = piece.forme.length;
         int nbColonne = piece.forme[0].length;
         if (ligne < 1 || colonne < 1 || ligne > this.nbLigne || colonne > this.nbColonne || ligne + nbLigne - 1 > this.nbLigne || colonne + nbColonne - 1 > this.nbColonne) {
-            if (jeu)
+            if (message)
                 Ecran.afficherln("Erreur : position incorrecte");
             return false;
         } else {
@@ -93,26 +93,39 @@ public class Plateau {
                 for (int j = 0; j < nbColonne; j++) {
                     if (piece.forme[i][j]) {
                         if (plateau[ligne + i - 1][colonne + j - 1].occupe) {
-                            if (jeu)
+                            if (message)
                                 Ecran.afficherln("Erreur : position déjà occupée");
                             return false;
                         }
                     }
                 }
             }
-            if (jeu) {
-                for (int i = 0; i < nbLigne; i++) {
-                    for (int j = 0; j < nbColonne; j++) {
-                        if (piece.forme[i][j]) {
-                            plateau[ligne + i - 1][colonne + j - 1].occupe = true;
-                            plateau[ligne + i - 1][colonne + j - 1].motif = motif;
-                        }
-                    }
+        }
+        return true;
+    }
+
+    /**
+     * Permet de poser une pièce sur le plateau
+     *
+     * @param piece   une piece
+     * @param ligne   nombre de lignes
+     * @param colonne nombre de colonnes
+     * @param motif   motif de la pièce
+     */
+    public void poser(String motif, Piece piece, int ligne, int colonne) {
+        int nbLigne = piece.forme.length;
+        int nbColonne = piece.forme[0].length;
+        for (int i = 0; i < nbLigne; i++) {
+            for (int j = 0; j < nbColonne; j++) {
+                if (piece.forme[i][j]) {
+                    plateau[ligne + i - 1][colonne + j - 1].occupe = true;
+                    plateau[ligne + i - 1][colonne + j - 1].motif = motif;
                 }
             }
         }
-        return true;
-
     }
+
+
+
 
 }

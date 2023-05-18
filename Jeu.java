@@ -23,7 +23,7 @@ public class Jeu {
      * Crée un jeu par default
      */
     public Jeu() {
-        this(new Plateau(), new Joueur("joueur1", "X ", 10), new Joueur("joueur2", "O ", 10));
+        this(new Plateau(5,5), new Joueur("joueur1", "O ", 10), new Joueur("joueur2", "X ", 10));
     }
 
     public void regle() {
@@ -32,26 +32,114 @@ public class Jeu {
         Ecran.afficherln("Les piece sont placer en fonction du coin supérieure gauche de la piece");
     }
 
+    /**
+     * Permet de choisir le mode de jeu
+     */
     public void choix() {
+        Ecran.afficherln("Choix du mode de jeu : ");
+        Ecran.afficherln("1 : Joueur contre Joueur");
+        Ecran.afficherln("2 : Joueur contre IA");
+        Ecran.afficherln("3 : IA contre IA");
+        int choix = Clavier.saisirInt();
+        switch (choix) {
+            case 1:
+                jouerJCJ();
+                break;
+            case 2:
+                jouerJCI();
+                break;
+            case 3:
+                jouerICI();
+                break;
+            default:
+                Ecran.afficherln("Erreur : choix incorrect");
+                choix();
+                break;
+        }
     }
 
-    public void jouer() {
+    /**
+     * Lance une partie de joueur contre joueur
+     */
+    public void jouerJCJ() {
+        joueur1.inventaire();
+        joueur2.inventaire();
+        while (true) {
+            if (!perdu(joueur1)) {
+                Ecran.afficherln("Au tour du joueur 1");
+                poser(joueur1, plateau);
+                plateau.afficher();
+            }else {
+                Ecran.afficherln("Le joueur 1 a perdu");
+                break;
+            }
+            if (!perdu(joueur2)) {
+                Ecran.afficherln("Au tour du joueur 2");
+                poser(joueur2, plateau);
+                plateau.afficher();
+            } else {
+                Ecran.afficherln("Le joueur 2 a perdu");
+                break;
+            }
+        }
+    }
+
+    /**
+     * Lance une partie de joueur contre IA
+     **/
+    public void jouerJCI() {
         joueur1.inventaire();
         joueur2.inventaire();
 
-        while (!perdu(joueur1) && !perdu(joueur2)) {
-            plateau.afficher();
-            poser(joueur1, plateau);
-            plateau.afficher();
-
+        while (true) {
+            if (!perdu(joueur1)) {
+                Ecran.afficherln("Au tour du joueur 1");
+                poser(joueur1, plateau);
+                plateau.afficher();
+            }else {
+                Ecran.afficherln("Le joueur 1 a perdu");
+                break;
+            }
             if (!perdu(joueur2)) {
-                poser(joueur2, plateau);
+                Ecran.afficherln("Au tour du joueur 2");
+                poserIA(joueur2, plateau);
+                plateau.afficher();
+            } else {
+                Ecran.afficherln("Le joueur 2 a perdu");
+                break;
             }
         }
-        if (perdu(joueur1)) {
-            Ecran.afficherln("Le joueur 1 a perdu");
-        } else {
-            Ecran.afficherln("Le joueur 2 a perdu");
+    }
+
+    /**
+     * Lance une partie d'IA contre IA
+     **/
+    public void jouerICI() {
+        joueur1.inventaire();
+        joueur2.inventaire();
+        int i = 0, j = 0;
+        plateau.afficher();
+        while (true) {
+            if (!perdu(joueur1)) {
+                Ecran.afficherln("Au tour du joueur 1");
+                joueur1.motif = (char) (65 + i) + " ";
+                poserIA(joueur1, plateau);
+                plateau.afficher();
+                i++;
+            }else {
+                Ecran.afficherln("Le joueur 1 a perdu");
+                break;
+            }
+            if (!perdu(joueur2)) {
+                Ecran.afficherln("Au tour du joueur 2");
+                joueur2.motif = (char) (96 + j) + " ";
+                poserIA(joueur2, plateau);
+                plateau.afficher();
+                j++;
+            } else {
+                Ecran.afficherln("Le joueur 2 a perdu");
+                break;
+            }
         }
     }
 
@@ -68,7 +156,7 @@ public class Jeu {
                 for (int j = 0; j < 4; j++) {
                     for (int k = 1; k <= plateau.nbLigne; k++) {
                         for (int l = 1; l <= plateau.nbColonne; l++) {
-                            if (plateau.poser(joueur.motif, joueur.piece[i], k, l, false)) {
+                            if (plateau.peutPoser(joueur.piece[i], k, l, false)) {
                                 return false;
                             }
                         }
@@ -102,10 +190,39 @@ public class Jeu {
         int ligne = Clavier.saisirInt();
         Ecran.afficherln("Choisissez une colonne : ");
         int colonne = Clavier.saisirChar() - 64;
-        if (plateau.poser(joueur.motif, piece, ligne, colonne, true)) {
+        if (plateau.peutPoser(piece, ligne, colonne, true)) {
+            plateau.poser(joueur.motif, piece, ligne, colonne);
             joueur.enleverPiece(piece);
         } else {
             poser(joueur, plateau);
+        }
+    }
+
+    /**
+     * Permet à un joueurIA de poser une pièce sur le plateau
+     *
+     * @param joueurIA JoueurIA qui pose la pièce
+     * @param plateau  Plateau sur lequel la pièce est posée
+     */
+    public void poserIA(Joueur joueurIA, Plateau plateau) {
+        int nbLigne = (int) (Math.random() * plateau.nbLigne) + 1;
+        int nbColonne = (int) (Math.random() * plateau.nbColonne) + 1;
+
+        int numPiece = (int) (Math.random() * joueurIA.piece.length);
+        Piece piece = joueurIA.piece[numPiece];
+        while (piece == null) {
+            numPiece = (int) (Math.random() * joueurIA.piece.length);
+            piece = joueurIA.piece[numPiece];
+        }
+        int rotation = (int) (Math.random() * 4);
+        for (int i = 0; i < rotation; i++) {
+            piece.rotation();
+        }
+        if (plateau.peutPoser(piece, nbLigne, nbColonne, false)) {
+            plateau.poser(joueurIA.motif, piece, nbLigne, nbColonne);
+            joueurIA.enleverPiece(piece);
+        } else {
+            poserIA(joueurIA, plateau);
         }
 
     }
