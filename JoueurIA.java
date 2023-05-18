@@ -1,7 +1,8 @@
-//classe pour faire jouer un IA avec de l'aléatoire
+/**
+ * Classe JoueurIA
+ * Classe permettant de créer un joueur IA
+ **/
 public class JoueurIA {
-  
-  //utilisation de la classe joueur pour l'IA
-  //en utilisant de l'aléatoire
+
   
 }

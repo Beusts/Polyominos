@@ -27,8 +27,9 @@ public class Jeu {
     }
 
     public void regle() {
-        Ecran.afficher("Chaque joueur dispose d'un ensemble de pièces, qui sont des polyominos(dominos, triominos, tétrominos), et qu'il place tour à tour sur un plateau (une grille rectangulaire).");
-        Ecran.afficher("Il s'agit d'un jeu de blocage : le perdant est le premier joueur qui ne peut plus placer de pièce. Choix de jouer face à un autre joueur ou un ordinateuré");
+        Ecran.afficherln("Chaque joueur dispose d'un ensemble de pièces, qui sont des polyominos(dominos, triominos, tétrominos), et qu'il place tour à tour sur un plateau (une grille rectangulaire).");
+        Ecran.afficherln("Il s'agit d'un jeu de blocage : le perdant est le premier joueur qui ne peut plus placer de pièce. Choix de jouer face à un autre joueur ou un ordinateuré");
+        Ecran.afficherln("Les piece sont placer en fonction du coin supérieure gauche de la piece");
     }
 
     public void choix() {
@@ -38,22 +39,46 @@ public class Jeu {
         joueur1.inventaire();
         joueur2.inventaire();
 
-        while (!perdu()) {
+        while (!perdu(joueur1) && !perdu(joueur2)) {
+            plateau.afficher();
             poser(joueur1, plateau);
-            if (perdu()) {
-                break;
+            plateau.afficher();
+
+            if (!perdu(joueur2)) {
+                poser(joueur2, plateau);
             }
-            poser(joueur2, plateau);
+        }
+        if (perdu(joueur1)) {
+            Ecran.afficherln("Le joueur 1 a perdu");
+        } else {
+            Ecran.afficherln("Le joueur 2 a perdu");
         }
     }
 
     /**
-     * Vérifie si le joueur a perdu
+     * Vérifie si le joueur a perdu donc ne peut pas poser de pièce
      *
+     * @param joueur Joueur à vérifier
      * @return true si le joueur a perdu, false sinon
      **/
-    public boolean perdu() {
-        return false;
+    public boolean perdu(Joueur joueur) {
+        int taille = joueur.piece.length;
+        for (int i = 0; i < taille; i++) {
+            if (joueur.piece[i] != null) {
+                for (int j = 0; j < 4; j++) {
+                    for (int k = 1; k <= plateau.nbLigne; k++) {
+                        for (int l = 1; l <= plateau.nbColonne; l++) {
+                            if (plateau.poser(joueur.motif, joueur.piece[i], k, l, false)) {
+                                return false;
+                            }
+                        }
+                    }
+                    joueur.piece[i].rotation();
+                }
+            }
+        }
+        return true;
+
     }
 
     /**
@@ -76,8 +101,8 @@ public class Jeu {
         Ecran.afficherln("Choisissez une ligne : ");
         int ligne = Clavier.saisirInt();
         Ecran.afficherln("Choisissez une colonne : ");
-        int colonne = Clavier.saisirChar() - 65;
-        if (plateau.poser(joueur.motif, piece, ligne, colonne)) {
+        int colonne = Clavier.saisirChar() - 64;
+        if (plateau.poser(joueur.motif, piece, ligne, colonne, true)) {
             joueur.enleverPiece(piece);
         } else {
             poser(joueur, plateau);

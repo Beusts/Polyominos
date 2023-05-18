@@ -63,24 +63,31 @@ public class Joueur {
     }
 
     /**
-     * Affiche l'inventaire du joueur
+     * Affiche l'inventaire du joueur à la suite en ligne
      */
     public void afficherPieces(){
         int taille = piece.length;
         for (int i = 0; i < taille; i++) {
-            Ecran.afficherln(i + 1 + " : ");
-            piece[i].afficher(this.motif);
-            Ecran.afficherln();
+            if (piece[i] != null) {
+                Ecran.afficherln(i + 1 + " : ");
+                piece[i].afficher(this.motif);
+                Ecran.afficherln();
+            }
+
         }
     }
 
     public void enleverPiece(Piece piece){
         int taille = this.piece.length;
         for (int i = 0; i < taille; i++) {
-            if (Objects.equals(this.piece[i].nom, piece.nom)) {
-                this.piece[i] = null;
-                break;
+            if (this.piece[i] != null) {
+                if (Objects.equals(this.piece[i].nom, piece.nom)) {
+                    this.piece[i] = null;
+                    break;
+                }
             }
         }
     }
+
+
 }
